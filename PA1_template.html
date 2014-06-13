@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=9" >
+
+<title>Reproducible Research: Peer Assessment 1</title>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+   white-space: pre-wrap;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r, code.cpp {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: rgb(88, 72, 246)
+   }
+
+   pre .number {
+     color: rgb(0, 0, 205);
+   }
+
+   pre .comment {
+     color: rgb(76, 136, 107);
+   }
+
+   pre .keyword {
+     color: rgb(0, 0, 255);
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: rgb(3, 106, 7);
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+
+
+
+</head>
+
+<body>
+<h1>Reproducible Research: Peer Assessment 1</h1>
+
+<h2>Loading and preprocessing the data</h2>
+
+<pre><code class="r">setwd(&quot;~/Coursera&quot;)
+data &lt;- read.csv(&#39;activity.csv&#39;)
+data$date &lt;- as.Date(data$date,&#39;%Y-%m-%d&#39;)
+</code></pre>
+
+<h2>What is mean total number of steps taken per day?</h2>
+
+<p>Below is the histogram of the total number of steps taken each day:</p>
+
+<pre><code class="r">new_data &lt;- na.omit(data)
+sum_step &lt;- aggregate(new_data$steps, by=list(new_data$date),sum)
+colnames(sum_step) &lt;- c(&#39;date&#39;,&#39;sum_steps&#39;)
+library(ggplot2)
+</code></pre>
+
+<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 3.0.3
+</code></pre>
+
+<pre><code class="r">qplot(sum_steps, data=sum_step,geom=&#39;histogram&#39;,binwidth=1000,fill=&#39;red&#39;)+theme(legend.position=&#39;none&#39;)
+</code></pre>
+
+<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-2"/> 
+Here is the summarized table of mean and median total number of steps taken per day:</p>
+
+<pre><code class="r">library(plyr)
+</code></pre>
+
+<pre><code>## Warning: package &#39;plyr&#39; was built under R version 3.0.3
+</code></pre>
+
+<pre><code class="r">library(xtable)
+mm_steps &lt;- ddply(new_data,~date,summarise,mean_steps=mean(steps),median_steps=median(steps))
+xt &lt;- xtable(mm_steps)
+print(xt,type=&quot;html&quot;)
+</code></pre>
+
+<pre><code>## Warning: class of &#39;x&#39; was discarded
+</code></pre>
+
+<!-- html table generated in R 3.0.2 by xtable 1.7-3 package -->
+
+<!-- Thu Jun 12 18:50:31 2014 -->
+
+<TABLE border=1>
+<TR> <TH>  </TH> <TH> date </TH> <TH> mean_steps </TH> <TH> median_steps </TH>  </TR>
+  <TR> <TD align="right"> 1 </TD> <TD align="right"> 15615.00 </TD> <TD align="right"> 0.44 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 2 </TD> <TD align="right"> 15616.00 </TD> <TD align="right"> 39.42 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 3 </TD> <TD align="right"> 15617.00 </TD> <TD align="right"> 42.07 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 4 </TD> <TD align="right"> 15618.00 </TD> <TD align="right"> 46.16 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 5 </TD> <TD align="right"> 15619.00 </TD> <TD align="right"> 53.54 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 6 </TD> <TD align="right"> 15620.00 </TD> <TD align="right"> 38.25 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 7 </TD> <TD align="right"> 15622.00 </TD> <TD align="right"> 44.48 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 8 </TD> <TD align="right"> 15623.00 </TD> <TD align="right"> 34.38 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 9 </TD> <TD align="right"> 15624.00 </TD> <TD align="right"> 35.78 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 10 </TD> <TD align="right"> 15625.00 </TD> <TD align="right"> 60.35 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 11 </TD> <TD align="right"> 15626.00 </TD> <TD align="right"> 43.15 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 12 </TD> <TD align="right"> 15627.00 </TD> <TD align="right"> 52.42 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 13 </TD> <TD align="right"> 15628.00 </TD> <TD align="right"> 35.20 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 14 </TD> <TD align="right"> 15629.00 </TD> <TD align="right"> 52.38 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 15 </TD> <TD align="right"> 15630.00 </TD> <TD align="right"> 46.71 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 16 </TD> <TD align="right"> 15631.00 </TD> <TD align="right"> 34.92 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 17 </TD> <TD align="right"> 15632.00 </TD> <TD align="right"> 41.07 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 18 </TD> <TD align="right"> 15633.00 </TD> <TD align="right"> 36.09 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 19 </TD> <TD align="right"> 15634.00 </TD> <TD align="right"> 30.63 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 20 </TD> <TD align="right"> 15635.00 </TD> <TD align="right"> 46.74 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 21 </TD> <TD align="right"> 15636.00 </TD> <TD align="right"> 30.97 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 22 </TD> <TD align="right"> 15637.00 </TD> <TD align="right"> 29.01 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 23 </TD> <TD align="right"> 15638.00 </TD> <TD align="right"> 8.65 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 24 </TD> <TD align="right"> 15639.00 </TD> <TD align="right"> 23.53 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 25 </TD> <TD align="right"> 15640.00 </TD> <TD align="right"> 35.14 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 26 </TD> <TD align="right"> 15641.00 </TD> <TD align="right"> 39.78 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 27 </TD> <TD align="right"> 15642.00 </TD> <TD align="right"> 17.42 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 28 </TD> <TD align="right"> 15643.00 </TD> <TD align="right"> 34.09 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 29 </TD> <TD align="right"> 15644.00 </TD> <TD align="right"> 53.52 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 30 </TD> <TD align="right"> 15646.00 </TD> <TD align="right"> 36.81 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 31 </TD> <TD align="right"> 15647.00 </TD> <TD align="right"> 36.70 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 32 </TD> <TD align="right"> 15649.00 </TD> <TD align="right"> 36.25 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 33 </TD> <TD align="right"> 15650.00 </TD> <TD align="right"> 28.94 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 34 </TD> <TD align="right"> 15651.00 </TD> <TD align="right"> 44.73 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 35 </TD> <TD align="right"> 15652.00 </TD> <TD align="right"> 11.18 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 36 </TD> <TD align="right"> 15655.00 </TD> <TD align="right"> 43.78 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 37 </TD> <TD align="right"> 15656.00 </TD> <TD align="right"> 37.38 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 38 </TD> <TD align="right"> 15657.00 </TD> <TD align="right"> 25.47 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 39 </TD> <TD align="right"> 15659.00 </TD> <TD align="right"> 0.14 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 40 </TD> <TD align="right"> 15660.00 </TD> <TD align="right"> 18.89 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 41 </TD> <TD align="right"> 15661.00 </TD> <TD align="right"> 49.79 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 42 </TD> <TD align="right"> 15662.00 </TD> <TD align="right"> 52.47 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 43 </TD> <TD align="right"> 15663.00 </TD> <TD align="right"> 30.70 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 44 </TD> <TD align="right"> 15664.00 </TD> <TD align="right"> 15.53 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 45 </TD> <TD align="right"> 15665.00 </TD> <TD align="right"> 44.40 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 46 </TD> <TD align="right"> 15666.00 </TD> <TD align="right"> 70.93 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 47 </TD> <TD align="right"> 15667.00 </TD> <TD align="right"> 73.59 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 48 </TD> <TD align="right"> 15668.00 </TD> <TD align="right"> 50.27 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 49 </TD> <TD align="right"> 15669.00 </TD> <TD align="right"> 41.09 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 50 </TD> <TD align="right"> 15670.00 </TD> <TD align="right"> 38.76 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 51 </TD> <TD align="right"> 15671.00 </TD> <TD align="right"> 47.38 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 52 </TD> <TD align="right"> 15672.00 </TD> <TD align="right"> 35.36 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 53 </TD> <TD align="right"> 15673.00 </TD> <TD align="right"> 24.47 </TD> <TD align="right"> 0.00 </TD> </TR>
+   </TABLE>
+
+<h2>What is the average daily activity pattern?</h2>
+
+<p>Below is a time series plot of the 5-minute interval and the average number of steps taken, averaged across all days:</p>
+
+<pre><code class="r">aver_step &lt;- aggregate(new_data$steps, by=list(new_data$interval),mean)
+colnames(aver_step) &lt;- c(&#39;interval&#39;,&#39;average_steps&#39;)
+qplot(x=interval,y=average_steps,data=aver_step,geom=&#39;line&#39;,color =&#39;red&#39;)+theme(legend.position=&#39;none&#39;)
+</code></pre>
+
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfgAAAH4CAMAAACR9g9NAAAAtFBMVEUAAAAAADoAAGYAOmYAOpAAZrY6AAA6ADo6AGY6OmY6OpA6kNtmAABmADpmAGZmOgBmtv9/f39/f5V/f6t/lcF/q9aQOgCQOjqQZgCQtpCQ2/+Vf3+Vweurf6urlZWr1v+2ZgC2/7a2///BlX/BlZXBlavBwdbB6//Wq3/W///bkDrb25Db/7bb/9vb///l5eXrwZXr///y8vL4dm3/tmb/1qv/25D//7b//9b//9v//+v///98wvEfAAAACXBIWXMAAAsSAAALEgHS3X78AAAUpElEQVR4nO2dC2PbthWF1S3Nurwa5dFurlJnSdPYXhc6RmQ75v//X+NbfAD3AiBE4RLnxKEkiPp4rY/gQyLpTY4kmc2pC0BOE4hPNBCfaCA+0UB8ooH4RAPxiQbiEw3EJxqITzQQn2ggPtFAfKJxF59pom3U5sZ6TEDDQiE+USjEJwqF+EShEJ8oFOIThUJ8olCITxQK8YlCIT5RKMQnCoX4RKEQnygU4hOFQnyiUIhPFArxiUIhPlEoxCcKhfhEoQmIV8eAUhEBhXg/KBURUIj3g1IRAYV4PygVEVCI94NSEQGFeD8oFRFQiPeDUhEBhXg/KBURUIj3g1IRAYV4PygVEVCI94NSEQG1Ff/wcbt98zW/2L76nDdDMeIJ83FVuiTUVvz+beH7fP/ma/cD8aKhtuLLXJ9f7/L7d5f1sGjYFqFeEEeUOnUFAkKJLzr99Xn+8OmyHjatS8yd86Do8VqetfiLYmE/6vEQLxdqK/7h43nZ6bGOt4gIqK34i3J9vsNWvU1EQO0X9YYsUeQ8KMRreRDvBaUiAgrxflAqIqAQ7welIgIK8X5QKiKgEO8HpSICCvF+UCoioBDvB6UiAgrxflAqIqAQ7welIgIK8X5QKiKg6xevqGOvoqp0USjEe0HJiIBCvBeUjAgoxHtByYiAQrwXlIwIKMR7QcmIgEK8F5SMCCjEe0HJiIBCvBeUjAhoCuIJ81FVuigU4r2gZERAId4LSkYEFOK9oGREQCHeC0pGBBTivaBkREAh3gtKRgQU4r2gZERAId4LSkYEFOK9oGREQCHeC0pGBBTivaBkREAh3gtKRgQU4r2gZERAId4LSkYEFOK9oGREQCHeC0pGBBTivaBkREAh3gtKRgQU4r2gZERAId4LSkYEFOK9oGREQCHeC0pGBBTivaBkREBni7/RRNs4N75QVf0EhpIRAU2ix5u7fFSVLgqFeC8oGRFQiPeCkhEBhXgvKBkRUIj3gpIRAYV4LygZEVCI94KSEQFdu3gF8QYexLtDmYiAQrwHlIkIKMR7QJmIgEK8B5SJCCjEe0CZiIBCvAeUiQgoxHtAmYiAQrwHlIkIKMR7QJmIgK5efOUc4qe8JMQbzUdU6cJQiPeAMhEBhXgPKBMR0JWLVxBv4kG8M5SLCOjaxWcQb+ClId5kPp5Kl4ZCvDuUiwgoxLtDuYiAQrw7lIsIKMS7Q7mIgEK8O5SLCGgq4g3m46l0aSjEu0O5iIBCvDuUiwgoxLtDuYiAQrw7lIsIKMS7Q7mIgCYjXm8+nkqXhkK8O5SLCCjEu0O5iICuXrzu7kwoFxFQiHeHchEBhXh3KBcR0HTEa83HU+nSUIh3h3IRAYV4dygXEVCId4dyEQGFeHcoFxFQe/H37y7z/GK7ffW5GBYDiDdFBNRa/H77+jJ/+KMUvn/ztfgRJ15nPp5Kl4bain/48+HTZX7/+2/bt/n1ru7++baIeRERQ5TxATIIsagvxe+LXn99fn1ePaizxNzpD0WPN/KcxJfZ77oeD/HaiIA69vhdXvR4rOPpiIA69vhiq36XC92qh/gBz1q8IUsU6Q8dup6aj6fSpaEQ7w7lIgIK8e5QLiKgEO8O5SICCvHuUC4ioBDvDuUiApqU+Kn5eCpdGgrx7lAuIqAQ7w7lIgIK8e5QLiKgEO8O5SICCvHuUC4ioBDvDuUiAgrx7lAuIqAQ7w7lIgIK8e5QLiKgEO8O5SICCvHuUC4ioBDvDuUiAgrx7lAuIqAQ7w7lIgIK8e5QLiKgEO8O5SICCvHuUC4ioBDvDuUiAgrx7lAuIqAQ7w7lIgIK8e5QLiKgaYmfPI6n0qWhEO8O5SICCvHuUC4ioBDvDuUiAgrx7lAuIqAQ7w7lIgIK8e5QLiKgEO8O5SICCvHuUC4ioBDvDuUiAgrx7lAuIqAQ7w7lIgIK8e5QLiKgEO8O5SICCvHuUC4ioBDvDuUiAjpb/I0m2sa58YIq5nE8lS4NRY93h3IRAYV4dygXEVCId4dyEQGFeHcoFxFQWvzVoy9Xm81LiE9M/N3zs+Ln9qcPEJ+Y+Bcfij4P8SMoFxFQUnx+tfnh7BsW9SMoFxFQWrxFlijSHwrxRh7EO0O5iIDS4r//stlsfoT4LDHx3395WgyvSPNLFOkPhXgjjxJfbNV3Q4i3jggoKb7u7OjxIygXEVC6xz/b1Pmbuc8vUaQ/FOKNPLLHW2SJIv2hEG/kQbwzlIsIKC2+2J179Nfzs/WIHzfEU+nSUFJ8sTt3++TLt0dfID4t8cWOXCF+TbtzEN/x+B5/hR6fJSa+/siW9A7x04iA0uItskSR/lCIN/Io8ev7yBbiO55ZfPe5HdbxWVLiub4O8YaIgJLibbJEkf5QiDfySPGrO7wa4jseJX59h1dDfMcjxa/u8GqI73iU+PUdXg3xHY8Ub5ElivSHQryRZyX+m7nTL1GkPxTijTyId4ZyEQGFeHcoFxFQiHeHchEBhXh3KBcRUIh3h3IRAU1N/KglnkqXhtqJJ7JEkf5QiDfySPHrO7wa4lseJX6Fh1dDfMujxK/w8GqIb3l8j1/V4dUQ3/Io8Ss8vBriWx4p3iJLFOkPPan46cQDQPlAfAbxBI8S3x5gXV0X4f7dZZ5fbF99bocQb4h88fn7+uJH5Q7dfvv6Mt+/+dr9QLwp8sW3Z9L858WHhz8fPl3m17uy49fD4pltEfuVwimiLFqONu3lJjU/2sudPfrvk2LDvhJ/Xt7Uw2acJeZOf6im0w2ajlmpcu/xxCsW3rh7X17g8O5Z+R2NpsdDvDZrEN9LKV7aOl73RkJ8zXMSL22rHuLNPFL8FXeVO4jXRL74u+dn336UfGVLiDfzSPEvPtQ/EJ+W+O+/nhU/gs+dg3gzjxKfF86/bTZPCe8QP80KxFtkiSK9oUHEqxGUjXzx4i+FAvFmHiW+WMFDfIrim69lE9+PT1C8TZYo0hsK8WYexHPxFs9/IT8Rb37F4gdbij6hAuLNPEq8+BMqQohXCYoXf0IFxJt5fI8XfEIFxJt5lHjxJ1RAvJlHirfIEkV6QyHezIN4JimKv3tGL+YhXhv54vP89rHoPyMO8WYeLb7Mt7Q/q09TPHp8kuKxjs/SFG+TJYr0hkK8mUeKx3H1i4lXzUuUQf6yi3ocV7+0+HqKGvtLf0mD4+qXFz+8N4RaBMfVQzwRUjyOq88SFW8RLTRwkd5QiDcG4rnMEM+ah3ibSj2gEG8MxHOB+JWIHzRGK37yUoh3gUK8MRDPZUHx/dEhfg701OI58xBvU6kHNGbxKoN4u0o9oBBvDMRzaT6AW0C8gvhQUIg3BuK5zBJPmId4y0C8ZSA+iPh2bzy0eAXxloF4yywk/kYTbePc+EAV18hDlYFCJO9Nx/haNQKruqn/WAcNFvR4JjN7/GA44JZgyT1eCw1cpDf0lOJVf2p24k1VHqA2gXjD+QmRiC//QbxNpe5QWeLV6Hkd1CYQD/FE1izecDZSpOIVxBsqdYZGId60Ow/xtoF4y0C84YwGiK946xU/3kFqA/EVb4XiD5tVsYjXrHMg3jZSxU8+jG1bId4uEG+Z1MVrpY+fgHiIN49dizfyJrEVryDeqlLrMSWIrxoh3qpS6zEjE191bh22L34yDsS7Qw17zoOnraEQn7x4a/MQH6pIRyjEWwTieRjEQ7xVLMVnEG9X6bTJoEKZnxq/iq20Y80Qn2m+JtSIN1d5gNoE4g1xEX9YeEB8SuJ7nwjcWFyvcACF+PlFmqDHFq96N3PEa8qBeOs4iaccuW3cZRAvRbwKJV71b6fijdOA+FBFmqDHFa8GdzTiTROB+FBFmqBHFa+G93Q93jAVjfjJXALx1nERT66N7cSr0d2byew0W3wG8VaVTptOLd4wHT/xRJV0peNAvCEBxesnBPGhijRBTy9eOyWID1WkCWoST+9wBxWvqwHiQxVpghrEMwfLLCOe2feDeOvoxGsNBxd/WJsPPtJR0xF70HGzbgEA8VaVTpt04odHq+sSWPzUGcSHKtIE9RPff0/jFT9ugfheJuLVkcQriIf47hbip9DARZqgJxWvtKN2UIgPUKQJqhGvIB7iTRmIN+z6DZoP3/f1duEgXgMNXKQJOvlwVimIh3hjTiJ+ShQl/mK7ffW5GBaD04uvri0wbFlGvJorvqlbjviHP0rh+zdfi584xTtv1VtcEw3i8/vff9u+za93+f27y+LhtgiziDhmVPVv0DJt0r5uBNGSh9imQXWPe2NoJzhpVNP7Sv8sQT1aGPH715f59fn1ef7w6bJp0s5NgedOA1RpLyOhAvR4zRWFe2v3ED2+vhHT4yv5u67HRyJ+qGAJ8b2GLIh4bQ1TqFWOIX6/y4seH9E6vhavDi0nEa9ztC7x5Vb9Lo9nqz7TiWehEJ/J3o/vxI+sLC1e54heZ0N8IPH9nS138TpJEB+3+MH/JcRn7SJG47FXKSMS4tMS3/ruWBBvU+mkpZXdSfcSrzsaW/P5QADxSo3GthDfPQHxhwzE9+aAuMVrXwjxRKXtneG71d/u8hOv2xA7jvjJeoUSnw1nE4gfi+8kdUvSiMWrcZuecGiD+J74voP+orq9Par4rNmXm4rvXkP1eEMlEE9U2t6ZiHeF2oifvCSIeGMlEE9U2t6JVnzbpj+6A+LdixxA+1tzWTTiFcQfocgBdCx++qbNFq8zdHCkJuJHM4NBvHGXTTtFiB9DpYrXr/fNz0H8CBpUvNJeI4sUn6nMJL5phPhQRQ6gKhu8J2sQbzjPfzAZiD+5eM3jZvHvKV47NsSPoSPxmvfNXrwKLL5udRRv8N6Ib5+F+O7NmiG+e6kakA4jmF+ifTxDvPlKTRA/hIoVT1aifRLi+9CoxVcDB/HUiBA/hHYbRMY3DeItkrT49guz+eIziD9GkQOoAPHMpTWpCQ2fhPhsLJ7aLnIWP0bNEF8OA4o/TAfiYxSfjcQzBRATGiEhPqT4bvmpOfBV91AzNc3BNB0T4oMVOYCGE6+yI4gvnrAXT1YK8UNob1fMF3rQnXuK1xyqcQTx/cP07HcVIN6YI4u39g7xVpU2t5GINzDJwiaxEN9OqRXPw9cuPsg6vhM/OKFGI358tQWI10KtJm1f5AAaTHz9WUuDUlWzmp7l1L4C4qMR7w+diB8fsq15BcRDvHYUck1hio34BgfxxxXf62PDV0Qg3jBTOkG7pCu+4hxFfKBfH+KH0JOIn1wndUHxTaUQPx+qEX94Tr9xdgLx3Qe2EF8F4mdB26QpvlugCxNvWA+5QNskK77ZZJqK13/Wfkrx9f5H/dDiQwKIN6YnfgKNVnzznQ3Ez4Ay4m2gJxPP//4Qb4w08eVNdOJvNNE2zk0LVfNRqvpngNrxJ2OpQ0uoX/+ALO7k6kb1Cp+dJHv8oX9qKrXr8UaiHmoI2+MPNUXX47VQq0nbFzmAJiS+fy9Xzbm9ED8HKkx8Vh/INxRveiMgngjEQ/zkKT8oxGcixI+gmqdcoUcVnymIh3jN0/bQNhBvmQjF+86iVRIVP4byOYH4Ab3+OgniA0P5nFj84VwAiA8J5RON+G5CEB8AyufU4ntnYrbf3ED8fCifk4ufTAriA0D5xCQ+azf0ZkAh3jJRia8mlph43nsK4quNPIifDbVIbFDDtRmtoRBvmeigEB8AapEYofqDbiHeHmqRGKEQPxdqkRihED8XapEYoRA/F2qRGKEQPxdqkRihED8XapEYofrD7CHeHmqRGKEQPxdqkRih3R9E8YBKE2/hPUpHR4FC/EyoTWKEQvxMqE2ihE7FK4h3gNokSuhEvIJ4F6hNooRC/DyoTaKEjg7HUBDvBrVJlNCxeIV1vBPUJtFCId4fapNooRDvD7VJtNDhiRYQ7wK1SbTQ0Rk2CuLtoTaJFzo8YR7iHaA2iRc6ET/8kt7wjsUtvl80xBsyFT/audfzZIm38R6xo6NANeLLDfz2nFrDexa7+MO8m5t/CTdoP2sUPzx/XqB4NRZvddFuBjrKKsR3puvBeP9uYfFWihjxKuv94c9c/+2zI3SUNYg/9O16OBBvfM+OIl5/UpeuAGV+pEZX5g/0x7mHWYf4epUeh3g1ka90ko1jKNWJb1ohns706khZe16l7p3zEn+xffWZEp83XXU072l2L9XoW8Xs0NqKHy7JbBK9o6NCe39EpX539RtGPuL3b74WP6R4Vf9h7i714WGDP8OpOq2HCzo1o/XL7u5CvF364gc3I56H+Otdfv/usrizLUKMp6YPDrNCXv1rRmma6nval+dq+BCxiMNbZif+PH/4dNk8mDV3yulHq4N6iW97PMTLhfqI59fxgYsENA7x/FZ94CIBjUR8P0sUCSjEAxoICvGJQiE+USjEJwqF+EShEJ8oFOIThUJ8olCITxQK8YlCIT5RKMQnCoX4RKEQnyh0tnhdqAPxAI0IegjEJwU9BOKTgh4C8UlBDwkjHhEXiE80EJ9oID7RQHyiCSG+f7pFEFzJq6GB0NUJYH1iCG4DDVnsw8ft9s3X4JXqEkD84ASr+Xn443MHDYTeb19fDoghuBU0cLH7t4Xp89CVahNA/OCUyvm5//237dsGGgb98Gd5rm+fGIBbQ8MXm1+fB65UnxDi+ydRz8++6EjFL19BQ6Er8T1iEG5JCF9s0emDV6pLfD2+zH4Xdn4/Qo/POyFBi714m4evVJf41vH7XbkQCbuGqzpn6DVnBQ1b7MPH8zwPX6kucW7V7wJv01adM/S2cgMNWexFea2ZnZStekRiID7RQHyigfhEA/GJJl3xtz99mNwzj7O6pCv+EIhPKoXU2yf/2mxe3j3b/O1DNchv//nz5tGX/PuvZ7ePi2cgfo0pxT9+mn979KXU+/5pfvVjfvv4ZSE9v33y1/OzagSIX18ar/XNXSH67kXVcPW0/CnSPF5pIL4W/2yz2fxwVjU8+V/R6fP3m2LZD/ErzFD8iw9NW7GC//eTL3fPXmJRv9IMxJfr+GZtn19tnlZzwO0/ziB+hTmI//5LtVX/w1m9FV8IL+1v/v7zS4hH1haITzQQn2ggPtFAfKKB+EQD8YkG4hMNxCcaiE80/wckiQSj9H5DVwAAAABJRU5ErkJggg==" alt="plot of chunk unnamed-chunk-4"/> </p>
+
+<p>Interval that contains the maximum number of steps:</p>
+
+<pre><code class="r">aver_step[aver_step$average_steps == max(aver_step$average_steps),1]
+</code></pre>
+
+<pre><code>## [1] 835
+</code></pre>
+
+<h2>Imputing missing values</h2>
+
+<p>The total number of missing values in the dataset:</p>
+
+<pre><code class="r">sum(is.na(data))
+</code></pre>
+
+<pre><code>## [1] 2304
+</code></pre>
+
+<p>Replace all of the missing values in the dataset using the mean for that 5-minute interval</p>
+
+<pre><code class="r">data2 &lt;- data
+rep_func &lt;- function(table1,table2){
+  for (i in 1:nrow(table1)){
+    if (is.na(table1[i,1])){
+      j=i-as.integer((i-1)/288)*288
+      table1[i,1] &lt;- table2[j,2]
+    }
+  }
+  return(table1)
+}
+rep_data &lt;- rep_func(data2,aver_step)
+</code></pre>
+
+<p>Below is the histogram of the total number of steps taken each day based on the new dataset:</p>
+
+<pre><code class="r">new_sum_step &lt;- aggregate(rep_data$steps, by=list(rep_data$date),sum)
+colnames(new_sum_step) &lt;- c(&#39;date&#39;,&#39;new_sum_steps&#39;)
+library(ggplot2)
+qplot(new_sum_steps, data=new_sum_step,geom=&#39;histogram&#39;,binwidth=1000,fill=&#39;red&#39;)+theme(legend.position=&#39;none&#39;)
+</code></pre>
+
+<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-8"/> </p>
+
+<pre><code class="r">new_mm_steps &lt;- ddply(rep_data,~date,summarise,mean_steps=mean(steps),median_steps=median(steps))
+rep_xt &lt;- xtable(new_mm_steps)
+print(rep_xt,type=&quot;html&quot;)
+</code></pre>
+
+<pre><code>## Warning: class of &#39;x&#39; was discarded
+</code></pre>
+
+<!-- html table generated in R 3.0.2 by xtable 1.7-3 package -->
+
+<!-- Thu Jun 12 18:50:35 2014 -->
+
+<TABLE border=1>
+<TR> <TH>  </TH> <TH> date </TH> <TH> mean_steps </TH> <TH> median_steps </TH>  </TR>
+  <TR> <TD align="right"> 1 </TD> <TD align="right"> 15614.00 </TD> <TD align="right"> 37.38 </TD> <TD align="right"> 34.11 </TD> </TR>
+  <TR> <TD align="right"> 2 </TD> <TD align="right"> 15615.00 </TD> <TD align="right"> 0.44 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 3 </TD> <TD align="right"> 15616.00 </TD> <TD align="right"> 39.42 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 4 </TD> <TD align="right"> 15617.00 </TD> <TD align="right"> 42.07 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 5 </TD> <TD align="right"> 15618.00 </TD> <TD align="right"> 46.16 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 6 </TD> <TD align="right"> 15619.00 </TD> <TD align="right"> 53.54 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 7 </TD> <TD align="right"> 15620.00 </TD> <TD align="right"> 38.25 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 8 </TD> <TD align="right"> 15621.00 </TD> <TD align="right"> 37.38 </TD> <TD align="right"> 34.11 </TD> </TR>
+  <TR> <TD align="right"> 9 </TD> <TD align="right"> 15622.00 </TD> <TD align="right"> 44.48 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 10 </TD> <TD align="right"> 15623.00 </TD> <TD align="right"> 34.38 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 11 </TD> <TD align="right"> 15624.00 </TD> <TD align="right"> 35.78 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 12 </TD> <TD align="right"> 15625.00 </TD> <TD align="right"> 60.35 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 13 </TD> <TD align="right"> 15626.00 </TD> <TD align="right"> 43.15 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 14 </TD> <TD align="right"> 15627.00 </TD> <TD align="right"> 52.42 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 15 </TD> <TD align="right"> 15628.00 </TD> <TD align="right"> 35.20 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 16 </TD> <TD align="right"> 15629.00 </TD> <TD align="right"> 52.38 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 17 </TD> <TD align="right"> 15630.00 </TD> <TD align="right"> 46.71 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 18 </TD> <TD align="right"> 15631.00 </TD> <TD align="right"> 34.92 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 19 </TD> <TD align="right"> 15632.00 </TD> <TD align="right"> 41.07 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 20 </TD> <TD align="right"> 15633.00 </TD> <TD align="right"> 36.09 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 21 </TD> <TD align="right"> 15634.00 </TD> <TD align="right"> 30.63 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 22 </TD> <TD align="right"> 15635.00 </TD> <TD align="right"> 46.74 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 23 </TD> <TD align="right"> 15636.00 </TD> <TD align="right"> 30.97 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 24 </TD> <TD align="right"> 15637.00 </TD> <TD align="right"> 29.01 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 25 </TD> <TD align="right"> 15638.00 </TD> <TD align="right"> 8.65 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 26 </TD> <TD align="right"> 15639.00 </TD> <TD align="right"> 23.53 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 27 </TD> <TD align="right"> 15640.00 </TD> <TD align="right"> 35.14 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 28 </TD> <TD align="right"> 15641.00 </TD> <TD align="right"> 39.78 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 29 </TD> <TD align="right"> 15642.00 </TD> <TD align="right"> 17.42 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 30 </TD> <TD align="right"> 15643.00 </TD> <TD align="right"> 34.09 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 31 </TD> <TD align="right"> 15644.00 </TD> <TD align="right"> 53.52 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 32 </TD> <TD align="right"> 15645.00 </TD> <TD align="right"> 37.38 </TD> <TD align="right"> 34.11 </TD> </TR>
+  <TR> <TD align="right"> 33 </TD> <TD align="right"> 15646.00 </TD> <TD align="right"> 36.81 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 34 </TD> <TD align="right"> 15647.00 </TD> <TD align="right"> 36.70 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 35 </TD> <TD align="right"> 15648.00 </TD> <TD align="right"> 37.38 </TD> <TD align="right"> 34.11 </TD> </TR>
+  <TR> <TD align="right"> 36 </TD> <TD align="right"> 15649.00 </TD> <TD align="right"> 36.25 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 37 </TD> <TD align="right"> 15650.00 </TD> <TD align="right"> 28.94 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 38 </TD> <TD align="right"> 15651.00 </TD> <TD align="right"> 44.73 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 39 </TD> <TD align="right"> 15652.00 </TD> <TD align="right"> 11.18 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 40 </TD> <TD align="right"> 15653.00 </TD> <TD align="right"> 37.38 </TD> <TD align="right"> 34.11 </TD> </TR>
+  <TR> <TD align="right"> 41 </TD> <TD align="right"> 15654.00 </TD> <TD align="right"> 37.38 </TD> <TD align="right"> 34.11 </TD> </TR>
+  <TR> <TD align="right"> 42 </TD> <TD align="right"> 15655.00 </TD> <TD align="right"> 43.78 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 43 </TD> <TD align="right"> 15656.00 </TD> <TD align="right"> 37.38 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 44 </TD> <TD align="right"> 15657.00 </TD> <TD align="right"> 25.47 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 45 </TD> <TD align="right"> 15658.00 </TD> <TD align="right"> 37.38 </TD> <TD align="right"> 34.11 </TD> </TR>
+  <TR> <TD align="right"> 46 </TD> <TD align="right"> 15659.00 </TD> <TD align="right"> 0.14 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 47 </TD> <TD align="right"> 15660.00 </TD> <TD align="right"> 18.89 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 48 </TD> <TD align="right"> 15661.00 </TD> <TD align="right"> 49.79 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 49 </TD> <TD align="right"> 15662.00 </TD> <TD align="right"> 52.47 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 50 </TD> <TD align="right"> 15663.00 </TD> <TD align="right"> 30.70 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 51 </TD> <TD align="right"> 15664.00 </TD> <TD align="right"> 15.53 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 52 </TD> <TD align="right"> 15665.00 </TD> <TD align="right"> 44.40 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 53 </TD> <TD align="right"> 15666.00 </TD> <TD align="right"> 70.93 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 54 </TD> <TD align="right"> 15667.00 </TD> <TD align="right"> 73.59 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 55 </TD> <TD align="right"> 15668.00 </TD> <TD align="right"> 50.27 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 56 </TD> <TD align="right"> 15669.00 </TD> <TD align="right"> 41.09 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 57 </TD> <TD align="right"> 15670.00 </TD> <TD align="right"> 38.76 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 58 </TD> <TD align="right"> 15671.00 </TD> <TD align="right"> 47.38 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 59 </TD> <TD align="right"> 15672.00 </TD> <TD align="right"> 35.36 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 60 </TD> <TD align="right"> 15673.00 </TD> <TD align="right"> 24.47 </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD align="right"> 61 </TD> <TD align="right"> 15674.00 </TD> <TD align="right"> 37.38 </TD> <TD align="right"> 34.11 </TD> </TR>
+   </TABLE>
+
+<h2>Are there differences in activity patterns between weekdays and weekends?</h2>
+
+</body>
+
+</html>
+

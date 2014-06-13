@@ -2,19 +2,76 @@
 
 
 ## Loading and preprocessing the data
-
-
+```{r}
+setwd("~/Coursera")
+data <- read.csv('activity.csv')
+data$date <- as.Date(data$date,'%Y-%m-%d')
+```
 
 ## What is mean total number of steps taken per day?
-
-
+Below is the histogram of the total number of steps taken each day:
+```{r}
+new_data <- na.omit(data)
+sum_step <- aggregate(new_data$steps, by=list(new_data$date),sum)
+colnames(sum_step) <- c('date','sum_steps')
+library(ggplot2)
+qplot(sum_steps, data=sum_step,geom='histogram',binwidth=1000,fill='red')+theme(legend.position='none')
+```
+Here is the summarized table of mean and median total number of steps taken per day:
+```{r,results="asis"}
+library(plyr)
+library(xtable)
+mm_steps <- ddply(new_data,~date,summarise,mean_steps=mean(steps),median_steps=median(steps))
+xt <- xtable(mm_steps)
+print(xt,type="html")
+```
 
 ## What is the average daily activity pattern?
+Below is a time series plot of the 5-minute interval and the average number of steps taken, averaged across all days:
+```{r}
+aver_step <- aggregate(new_data$steps, by=list(new_data$interval),mean)
+colnames(aver_step) <- c('interval','average_steps')
+qplot(x=interval,y=average_steps,data=aver_step,geom='line',color ='red')+theme(legend.position='none')
+```
 
-
+Interval that contains the maximum number of steps:
+```{r}
+aver_step[aver_step$average_steps == max(aver_step$average_steps),1]
+```
 
 ## Imputing missing values
+The total number of missing values in the dataset:
+```{r}
+sum(is.na(data))
+```
+Replace all of the missing values in the dataset using the mean for that 5-minute interval
 
+```{r}
+data2 <- data
+rep_func <- function(table1,table2){
+  for (i in 1:nrow(table1)){
+    if (is.na(table1[i,1])){
+      j=i-as.integer((i-1)/288)*288
+      table1[i,1] <- table2[j,2]
+    }
+  }
+  return(table1)
+}
+rep_data <- rep_func(data2,aver_step)
+```
+Below is the histogram of the total number of steps taken each day based on the new dataset:
+```{r}
+new_sum_step <- aggregate(rep_data$steps, by=list(rep_data$date),sum)
+colnames(new_sum_step) <- c('date','new_sum_steps')
+library(ggplot2)
+qplot(new_sum_steps, data=new_sum_step,geom='histogram',binwidth=1000,fill='red')+theme(legend.position='none')
+```
+Here is the summarized table of mean and median total number of steps taken per day based on the new dataset:
 
+```{r,results="asis"}
+new_mm_steps <- ddply(rep_data,~date,summarise,mean_steps=mean(steps),median_steps=median(steps))
+rep_xt <- xtable(new_mm_steps)
+print(rep_xt,type="html")
+```
 
 ## Are there differences in activity patterns between weekdays and weekends?
