@@ -34,7 +34,7 @@ print(xt,type="html")
 ```
 
 <!-- html table generated in R 3.1.0 by xtable 1.7-3 package -->
-<!-- Sun Jun 15 12:50:55 2014 -->
+<!-- Sun Jun 15 13:03:35 2014 -->
 <TABLE border=1>
 <TR> <TH>  </TH> <TH> date </TH> <TH> mean_steps </TH> <TH> median_steps </TH>  </TR>
   <TR> <TD align="right"> 1 </TD> <TD> 2012-10-02 </TD> <TD align="right"> 0.44 </TD> <TD align="right"> 0.00 </TD> </TR>
@@ -124,7 +124,7 @@ sum(is.na(data))
 ## [1] 2304
 ```
 
-**Replace all of the missing values in the dataset using the mean for that 5-minute interval**
+**Replacing Strategy: replace all of the missing values in the dataset using the mean for that 5-minute interval**
 
 ```r
 data2 <- data
@@ -161,7 +161,7 @@ print(rep_xt,type="html")
 ```
 
 <!-- html table generated in R 3.1.0 by xtable 1.7-3 package -->
-<!-- Sun Jun 15 12:50:57 2014 -->
+<!-- Sun Jun 15 13:03:37 2014 -->
 <TABLE border=1>
 <TR> <TH>  </TH> <TH> date </TH> <TH> mean_steps </TH> <TH> median_steps </TH>  </TR>
   <TR> <TD align="right"> 1 </TD> <TD> 2012-10-01 </TD> <TD align="right"> 37.38 </TD> <TD align="right"> 34.11 </TD> </TR>

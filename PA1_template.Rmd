@@ -47,7 +47,7 @@ aver_step[aver_step$average_steps == max(aver_step$average_steps),1]
 sum(is.na(data))
 ```
 
-**Replace all of the missing values in the dataset using the mean for that 5-minute interval**
+**Replacing Strategy: replace all of the missing values in the dataset using the mean for that 5-minute interval**
 ```{r}
 data2 <- data
 rep_func <- function(table1,table2){
