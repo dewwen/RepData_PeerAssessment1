@@ -34,7 +34,7 @@ print(xt,type="html")
 ```
 
 <!-- html table generated in R 3.1.0 by xtable 1.7-3 package -->
-<!-- Sun Jun 15 13:03:35 2014 -->
+<!-- Sun Jun 15 13:05:31 2014 -->
 <TABLE border=1>
 <TR> <TH>  </TH> <TH> date </TH> <TH> mean_steps </TH> <TH> median_steps </TH>  </TR>
   <TR> <TD align="right"> 1 </TD> <TD> 2012-10-02 </TD> <TD align="right"> 0.44 </TD> <TD align="right"> 0.00 </TD> </TR>
@@ -161,7 +161,7 @@ print(rep_xt,type="html")
 ```
 
 <!-- html table generated in R 3.1.0 by xtable 1.7-3 package -->
-<!-- Sun Jun 15 13:03:37 2014 -->
+<!-- Sun Jun 15 13:05:33 2014 -->
 <TABLE border=1>
 <TR> <TH>  </TH> <TH> date </TH> <TH> mean_steps </TH> <TH> median_steps </TH>  </TR>
   <TR> <TD align="right"> 1 </TD> <TD> 2012-10-01 </TD> <TD align="right"> 37.38 </TD> <TD align="right"> 34.11 </TD> </TR>
@@ -243,4 +243,4 @@ qplot(interval,steps,data=new_aver_step,geom='line',color='red',facets=weektime~
 
 ![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10.png) 
 
-**From the plot we can see that the activities distribute more evenly on weekends, with similar amount of activities through out the day. I think the experimenter likes to go out in the weekends, like hiking. So the activities are quite consistent. While on weekdays, more activities are taken place in the morning, as the highest point in the plot shows. I guess this experimenter parhaps does some exercise in the morning and then go to work. Because the office work is mostly about staying in his own cube and work with computer. so his activities drops down from the late morning to the rest of the day.**
+**From the plot we can see that the activities distribute more evenly on weekends, with similar amount of activities through out the day. I think the experimenter likes to go out in the weekends, like hiking. So the activities are quite consistent. While on weekdays, more activities are taken place in the morning, as the highest point in the plot shows. I guess this experimenter perhaps does some exercise in the morning and then go to work. Because the office work is mostly about staying in his own cube and work with computer. so his activities drops down from the late morning to the rest of the day.**
