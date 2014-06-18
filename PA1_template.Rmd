@@ -3,7 +3,7 @@
 
 ## Loading and preprocessing the data
 ```{r}
-setwd("~/RepData_PeerAssessment1")
+setwd("~/Coursera")
 data <- read.csv('activity.csv')
 data$date <- as.Date(data$date,'%Y-%m-%d')
 ```

@@ -4,7 +4,7 @@
 ## Loading and preprocessing the data
 
 ```r
-setwd("~/RepData_PeerAssessment1")
+setwd("~/Coursera")
 data <- read.csv('activity.csv')
 data$date <- as.Date(data$date,'%Y-%m-%d')
 ```
@@ -17,6 +17,13 @@ clean_data <- na.omit(data)
 sum_step <- aggregate(clean_data$steps, by=list(clean_data$date),sum)
 colnames(sum_step) <- c('date','sum_steps')
 library(ggplot2)
+```
+
+```
+## Warning: package 'ggplot2' was built under R version 3.0.3
+```
+
+```r
 qplot(sum_steps, data=sum_step,geom='histogram',binwidth=1000,fill='red')+theme(legend.position='none')
 ```
 
@@ -26,6 +33,13 @@ qplot(sum_steps, data=sum_step,geom='histogram',binwidth=1000,fill='red')+theme(
 
 ```r
 library(plyr)
+```
+
+```
+## Warning: package 'plyr' was built under R version 3.0.3
+```
+
+```r
 library(xtable)
 mm_steps <- ddply(clean_data,~date,summarise,mean_steps=mean(steps),median_steps=median(steps))
 mm_steps$date <- as.character(mm_steps$date)
@@ -33,8 +47,8 @@ xt <- xtable(mm_steps)
 print(xt,type="html")
 ```
 
-<!-- html table generated in R 3.1.0 by xtable 1.7-3 package -->
-<!-- Sun Jun 15 13:05:31 2014 -->
+<!-- html table generated in R 3.0.2 by xtable 1.7-3 package -->
+<!-- Wed Jun 18 16:03:59 2014 -->
 <TABLE border=1>
 <TR> <TH>  </TH> <TH> date </TH> <TH> mean_steps </TH> <TH> median_steps </TH>  </TR>
   <TR> <TD align="right"> 1 </TD> <TD> 2012-10-02 </TD> <TD align="right"> 0.44 </TD> <TD align="right"> 0.00 </TD> </TR>
@@ -160,8 +174,8 @@ rep_xt <- xtable(new_mm_steps)
 print(rep_xt,type="html")
 ```
 
-<!-- html table generated in R 3.1.0 by xtable 1.7-3 package -->
-<!-- Sun Jun 15 13:05:33 2014 -->
+<!-- html table generated in R 3.0.2 by xtable 1.7-3 package -->
+<!-- Wed Jun 18 16:04:02 2014 -->
 <TABLE border=1>
 <TR> <TH>  </TH> <TH> date </TH> <TH> mean_steps </TH> <TH> median_steps </TH>  </TR>
   <TR> <TD align="right"> 1 </TD> <TD> 2012-10-01 </TD> <TD align="right"> 37.38 </TD> <TD align="right"> 34.11 </TD> </TR>
